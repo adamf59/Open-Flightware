@@ -26,7 +26,6 @@ public class Transmit extends Command {
 
     @Override
     public void execute() {
-        if (SystemHost.isJFSLVerified()) { // ONLY TRANSMIT IF RUN FROM FLT COMPUTER
 
             try {
                 SystemHost.getCommunications().transmit(data);
@@ -35,7 +34,7 @@ public class Transmit extends Command {
             }
 
 
-        }
+        
     }
 
 }

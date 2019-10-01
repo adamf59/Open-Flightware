@@ -27,7 +27,6 @@ public class SystemHost {
     private static SystemController c_systemController;
     
 
-    private static boolean isVerified = false;
 
     public static void main(String[] args) throws Exception {
         Console.printInfo("OpenFlightware Version 1.0");
@@ -112,13 +111,7 @@ public class SystemHost {
         return c_dispatcherService;
     }
 
-    /**
-     * returns 
-     * @return whether JFSL is running on command of the JFS Launcher (real instance vs. IDE instance)
-     */
-    public static boolean isJFSLVerified() {
-        return isVerified;
-    }
+    
 
 
 
