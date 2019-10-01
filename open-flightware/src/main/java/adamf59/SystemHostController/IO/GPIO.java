@@ -8,7 +8,7 @@ package adamf59.SystemHostController.IO;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 
-import adamf59.SystemHostController.SystemHost;
+
 import adamf59.SystemHostController.System.Console;
 
 public class GPIO {

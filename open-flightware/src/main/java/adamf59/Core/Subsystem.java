@@ -52,6 +52,14 @@ public abstract class Subsystem implements Runnable {
     public abstract void executeAlways();
 
         /**
+         * Runs before the destruction of the subsystem, usually to do some cleanup
+         */
+    public void onDestroy() {
+        
+    }
+
+
+        /**
          * Stops the subsystem from executing (the execute method), but does not fully stop it.
          */
     public final void suspendSubsystem() {
@@ -78,6 +86,7 @@ public abstract class Subsystem implements Runnable {
          */
     @SuppressWarnings("deprecation")
     public final void destroySubsystem() {
+        onDestroy();
         instanceThread.stop();
     }
 

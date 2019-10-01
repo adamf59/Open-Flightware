@@ -25,7 +25,7 @@ public class DispatcherService implements Runnable {
             Console.printErr("Exception thrown in dispatcher initialization: " + " >> " + e.getCause());
 
         }
-        Console.printOk("System Dispatcher Initialized Success");
+        Console.printOk("Reached Target: SystemDispatcher Start");
 
     }
     

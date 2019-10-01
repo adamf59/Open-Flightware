@@ -20,8 +20,10 @@ public class SystemController implements Runnable {
         try {
             instanceThread.start();
         } catch(Exception e) {
-            throw(new Exception("The System Controller failed to start and take control. Terminating all systems..."));
+            throw(new Exception("The System Controller failed to start and take control."));
         }
+        Console.printOk("Reached Target: SystemControllerStart");
+
     }
 
     @Override

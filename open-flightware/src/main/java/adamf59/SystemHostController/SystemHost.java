@@ -8,11 +8,14 @@
 
 package adamf59.SystemHostController;
 
+import java.util.Arrays;
+
 import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
 import adamf59.SystemHostController.System.Console;
 import adamf59.SystemHostController.System.DispatcherService;
+import adamf59.SystemHostController.System.NetworkingService;
 import adamf59.SystemHostController.System.SchedulerService;
 import adamf59.SystemHostController.System.SystemController;
 
@@ -25,12 +28,19 @@ public class SystemHost {
     private static SchedulerService c_schedulerService;
     private static DispatcherService c_dispatcherService;
     private static SystemController c_systemController;
-    
+    private static NetworkingService c_networkingService;
 
+    private static boolean isReal = false;
 
     public static void main(String[] args) throws Exception {
         Console.printInfo("OpenFlightware Version 1.0");
         Console.printInfo("------------------------------------------------------------------");
+
+        if(Arrays.toString(args).contains("-REAL")) {
+            Console.printInfo("This is running on a genuine flight computer!");
+            isReal = true;
+
+        }
 
         sys_init();
         
@@ -52,12 +62,10 @@ public class SystemHost {
             c_schedulerService = new SchedulerService();
             c_dispatcherService = new DispatcherService();
             c_systemController = new SystemController();
+            c_networkingService = new NetworkingService();
 
-      
             
-            
-
-            GPIO.initGPIOController();
+          if(isReal) sys_init_real(); // if this is a genuine computer, go ahead and initalize anything that will work on the module, like GPIO
 
 
         } catch(Exception e) {
@@ -67,7 +75,7 @@ public class SystemHost {
             return 0; 
         }
         // initializing system was successful
-        Console.printOk("System initialization complete");
+        Console.printOk("Reached Target: SystemInitialization");
         return 1;
     }
 
@@ -80,6 +88,13 @@ public class SystemHost {
         s_avionics.destroySubsystem();
         s_communications.destroySubsystem();
         GPIO.shutdown();
+        Console.printOk("Reached Target: Shutdown");
+
+    }
+
+    public static void sys_init_real() {
+        GPIO.initGPIOController();
+
     }
  
       
@@ -109,6 +124,21 @@ public class SystemHost {
          */
     public static DispatcherService getDispatcherService() {
         return c_dispatcherService;
+    }
+    
+    /**
+     * @return the c_systemController
+     */
+    public static SystemController getSystemController() {
+        return c_systemController;
+    }
+
+    /**
+     * Gets whether this instance is running on a genuine flight computer, as opposed to an IDE
+     * @return
+     */
+    public static boolean isReal() {
+        return isReal;
     }
 
     

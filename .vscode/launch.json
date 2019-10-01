@@ -2,38 +2,19 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - TransmissionFactory",
-            "request": "launch",
-            "mainClass": "adamf59.SystemHostController.Subsystems.Communications.TransmissionFactory",
-            "projectName": "jagsat-onboard"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Hex",
-            "request": "launch",
-            "mainClass": "adamf59.Core.Hex",
-            "projectName": "jagsat-onboard"
-        },
-        {
-            "type": "java",
-            "name": "Debug as Certified Launcher",
-            "request": "launch",
-            "mainClass": "",
-            "args": "-JFSL"
-        },
-        {
-            "type": "java",
-            "name": "Debug with Arg Prompt",
-            "request": "launch",
-            "mainClass": "",
-            "args": "${command:SpecifyProgramArgs}"
-        },
-        {
-            "type": "java",
             "name": "Debug as IDE",
             "request": "launch",
             "mainClass": "adamf59.SystemHostController.SystemHost",
-            "projectName": "jagsat-onboard"
+            "projectName": "open-flightware",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug as Genuine Computer",
+            "request": "launch",
+            "mainClass": "adamf59.SystemHostController.SystemHost",
+            "projectName": "open-flightware",
+            "args": "-REAL"
         }
     ]
 }
