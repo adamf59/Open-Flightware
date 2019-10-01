@@ -8,19 +8,12 @@
 
 package adamf59.SystemHostController;
 
-import java.net.InetAddress;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
 import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
-import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
-import adamf59.SystemHostController.Subsystems.Sensors.BME280;
 import adamf59.SystemHostController.System.Console;
 import adamf59.SystemHostController.System.DispatcherService;
 import adamf59.SystemHostController.System.SchedulerService;
-import adamf59.SystemHostController.System.SystemCheckout;
 import adamf59.SystemHostController.System.SystemController;
 
 public class SystemHost {
@@ -33,37 +26,18 @@ public class SystemHost {
     private static DispatcherService c_dispatcherService;
     private static SystemController c_systemController;
     
-    private static BME280 bme280;
 
     private static boolean isVerified = false;
 
     public static void main(String[] args) throws Exception {
-        Console.printInfo("JagSat Flight Computer v1.0");
-        Console.printInfo("Written by Adam Frank, deployed by Windham High School JagSat Team");
+        Console.printInfo("OpenFlightware Version 1.0");
         Console.printInfo("------------------------------------------------------------------");
-        Console.printInfo("NetworkingService: My IP Address is " + InetAddress.getLocalHost().getHostAddress());
-
-
-        if(Arrays.toString(args).contains("-JFSL")) {
-            Console.printInfo("Verified Jaguar Flight Systems Launcher... Hello JFSL!");
-            isVerified = true;
-
-        }
-
 
         sys_init();
         
-        try {
-            Console.printInfo("Handing control to System Controller...");
 
-            c_systemController.start();
 
-        } catch(Exception e) {
-            Console.printErr("Failed to connect to System Controller. System Host now destroying all systems.");
-
-        }
-
-        getSchedulerService().scheduleTask(new SystemCheckout(), SchedulerService.PRIORITY_HIGH);
+        //getSchedulerService().scheduleTask(new SystemCheckout(), SchedulerService.PRIORITY_HIGH);
         
         
 
@@ -86,10 +60,6 @@ public class SystemHost {
 
             GPIO.initGPIOController();
 
-            s_avionics = new Avionics(0);
-            s_communications = new Communications(1);
-            
-            bme280 = new BME280();
 
         } catch(Exception e) {
                 Console.printErr("Exception thrown in system initialization: " + " >> " + e.getCause());
@@ -150,16 +120,9 @@ public class SystemHost {
         return isVerified;
     }
 
-    //#region EDIT THIS REGION TO ADD SENSORS
 
-    /**
-     * @return the bme280 sensor
-     */
-    public static BME280 getBME280() {
-        return bme280;
-    }
 
-    //#endregion
+
 
    
 
