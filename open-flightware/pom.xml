@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>adamf59</groupId>
-  <artifactId>jagsat-onboard</artifactId>
+  <artifactId>open-flightware</artifactId>
   <version>1.0-Development</version>
 
-  <name>jagsat-onboard</name>
+  <name>open-flightware</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
