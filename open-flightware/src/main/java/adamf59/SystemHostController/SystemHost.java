@@ -63,6 +63,7 @@ public class SystemHost {
             c_dispatcherService = new DispatcherService();
             c_systemController = new SystemController();
             c_networkingService = new NetworkingService();
+            s_avionics = new Avionics(900);
 
             
           if(isReal) sys_init_real(); // if this is a genuine computer, go ahead and initalize anything that will work on the module, like GPIO
