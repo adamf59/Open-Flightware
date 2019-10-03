@@ -38,6 +38,16 @@ public class Avionics extends Subsystem {
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
         Gpio.pwmSetRange(1000);
         Gpio.pwmSetClock(500);
+        setPwm(1000);
+        try{
+            Thread.sleep(2000);
+            setPwm(0);
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException e){
+            
+        }
+        
     }
 
 
