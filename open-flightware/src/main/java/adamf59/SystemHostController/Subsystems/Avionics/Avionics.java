@@ -44,13 +44,8 @@ public class Avionics extends Subsystem {
     @Override
     public void execute() {
             Console.printInfo("Avionics subsystem updating...");
-            setPwm(100);
-            try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        setPwm(0);
+            setPwm(500);
+            
     }
 
     @Override
