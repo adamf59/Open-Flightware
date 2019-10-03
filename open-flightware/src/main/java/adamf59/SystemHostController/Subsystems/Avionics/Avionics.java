@@ -5,6 +5,8 @@
 */
 package adamf59.SystemHostController.Subsystems.Avionics;
 
+import java.util.Scanner;
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinAnalog;
 import com.pi4j.io.gpio.GpioPinAnalogOutput;
@@ -38,15 +40,10 @@ public class Avionics extends Subsystem {
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
         Gpio.pwmSetRange(1000);
         Gpio.pwmSetClock(500);
-        setPwm(1000);
-        try{
-            Thread.sleep(2000);
-            setPwm(0);
-            Thread.sleep(2000);
-        }
-        catch(InterruptedException e){
-            
-        }
+       setPwm(1000);
+       Scanner scan = new Scanner(System.in);
+       String in = scan.next();
+       setPwm(0);
         
     }
 
@@ -55,6 +52,7 @@ public class Avionics extends Subsystem {
     public void execute() {
             Console.printInfo("Avionics subsystem updating...");
             setPwm(500);
+            
             
     }
 
