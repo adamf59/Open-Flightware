@@ -40,10 +40,10 @@ public class Avionics extends Subsystem {
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
         Gpio.pwmSetRange(1000);
         Gpio.pwmSetClock(500);
-       setPwm(1000);
+       setPwm(2000);
        Scanner scan = new Scanner(System.in);
        String in = scan.next();
-       setPwm(0);
+       setPwm(1000);
         
     }
 
