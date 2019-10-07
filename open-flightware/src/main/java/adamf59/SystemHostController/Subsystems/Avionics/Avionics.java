@@ -38,13 +38,16 @@ public class Avionics extends Subsystem {
         pin = CommandArgumentParser.getPin(RaspiPin.class, RaspiPin.GPIO_01);
         pwm = GPIO.getGPIOController().provisionPwmOutputPin(pin);
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
-        Gpio.pwmSetRange(1000);
+        Gpio.pwmSetRange(1024);
         Gpio.pwmSetClock(500);
-       setPwm(2000);
+       setPwm(1024);
+       Console.printInfo("Set to 1024");
        Scanner scan = new Scanner(System.in);
        String in = scan.next();
-       setPwm(1000);
-        
+       Console.printInfo("Set to 0");
+       setPwm(0);
+       Scanner scan1 = new Scanner(System.in);
+       String in1 = scan.next();
     }
 
 
