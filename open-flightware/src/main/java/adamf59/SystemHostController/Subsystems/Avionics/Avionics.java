@@ -26,6 +26,7 @@ import adamf59.SystemHostController.System.Console;
 
 public class Avionics extends Subsystem {
     Pin pin;
+    ESCControl esc;
     GpioPinPwmOutput pwm;
     public Avionics(int id) {
         super("JAGSAT_AVIONICS_SUBSYSTEM", id);
@@ -49,15 +50,16 @@ public class Avionics extends Subsystem {
        setPwm(0);
        Scanner scan1 = new Scanner(System.in);
        String in1 = scan.next(); */
-       ESCControl esc = new ESCControl(18);
+       esc = new ESCControl(18);
        esc.calibrate();
+       esc.arm(true);
     }
 
 
     @Override
     public void execute() {
             Console.printInfo("Avionics subsystem updating...");
-           // setPwm(500);
+           esc.fullSpeed();
             
             
     }
