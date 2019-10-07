@@ -35,10 +35,11 @@ public class Avionics extends Subsystem {
     @Override
     public void init() {
         Console.printInfo("Initializing Avionics Subsystem");
-        pin = CommandArgumentParser.getPin(RaspiPin.class, RaspiPin.GPIO_01);
+/*         pin = CommandArgumentParser.getPin(RaspiPin.class, RaspiPin.GPIO_01);
         pwm = GPIO.getGPIOController().provisionPwmOutputPin(pin);
+        
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
-        Gpio.pwmSetRange(1024);
+        Gpio.pwmSetRange(2000);
         Gpio.pwmSetClock(500);
        setPwm(1024);
        Console.printInfo("Set to 1024");
@@ -47,14 +48,16 @@ public class Avionics extends Subsystem {
        Console.printInfo("Set to 0");
        setPwm(0);
        Scanner scan1 = new Scanner(System.in);
-       String in1 = scan.next();
+       String in1 = scan.next(); */
+       ESCControl esc = new ESCControl(18);
+       esc.calibrate();
     }
 
 
     @Override
     public void execute() {
             Console.printInfo("Avionics subsystem updating...");
-            setPwm(500);
+           // setPwm(500);
             
             
     }

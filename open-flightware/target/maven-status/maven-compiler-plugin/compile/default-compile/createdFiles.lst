@@ -1,3 +1,4 @@
+adamf59/SystemHostController/Subsystems/Avionics/ESCControl.class
 adamf59/SystemHostController/System/Console.class
 adamf59/SystemHostController/IO/GPIO.class
 adamf59/SystemHostController/System/DispatcherService.class
@@ -10,6 +11,7 @@ adamf59/SystemHostController/Subsystems/Avionics/Avionics.class
 adamf59/Core/Subsystem.class
 adamf59/SystemHostController/SystemHost.class
 adamf59/SystemHostController/System/NetworkingService.class
+adamf59/SystemHostController/Subsystems/Avionics/ElectronicSpeedController.class
 adamf59/SystemHostController/System/SystemMap.class
 adamf59/SystemHostController/Subsystems/Communications/Communications$1.class
 adamf59/Core/Schedulable.class
