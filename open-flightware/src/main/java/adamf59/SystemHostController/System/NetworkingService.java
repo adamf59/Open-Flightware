@@ -59,6 +59,21 @@ public class NetworkingService extends Subsystem {
                     s.receive(dx);
                     Console.printInfo("NetworkingService: RX: "+ 
                        (new String(buffer, 0, dx.getLength())));
+
+                       String RXData = (new String(buffer,0,dx.getLength()));
+                       String[] sectionalizedData = RXData.split(",");
+                       if(sectionalizedData[0].equals("MAN")) {
+                           try {
+                            Console.printInfo("Sending Motor Value: " + sectionalizedData[2]);
+                            SystemHost.s_communications.transmit(sectionalizedData[2]);
+                           } catch(Exception e) {
+                               Console.printErr("no send: " + e.getMessage());
+                               e.printStackTrace();
+                           }
+
+                        // iterate through for loop
+                       }
+
                 } catch(Exception e) {
                     Console.printErr("Failed to recieve message on NetworkService | Reason: " + e.getMessage());
                 }

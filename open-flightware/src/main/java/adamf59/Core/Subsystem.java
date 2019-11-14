@@ -31,7 +31,6 @@ public abstract class Subsystem implements Runnable {
     public Subsystem(String name, int id) {
         this.id = id;
         this.name = name;
-        init();
         instanceThread = new Thread(this, name);
         instanceThread.start();
     }

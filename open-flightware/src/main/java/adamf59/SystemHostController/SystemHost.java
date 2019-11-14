@@ -58,13 +58,18 @@ public class SystemHost {
          */
     public static int sys_init() {
         Console.printInfo("System is now initalizing");
+        Console.printOk("New build version");
         try {
             c_schedulerService = new SchedulerService();
             c_dispatcherService = new DispatcherService();
             c_systemController = new SystemController();
             c_networkingService = new NetworkingService();
-            if(isReal) sys_init_real();
+            c_networkingService.init();
+            s_communications = new Communications(9001);
+            s_communications.init();
             s_avionics = new Avionics(900);
+            s_avionics.init();
+            if(isReal) sys_init_real();
 
             
            // if this is a genuine computer, go ahead and initalize anything that will work on the module, like GPIO

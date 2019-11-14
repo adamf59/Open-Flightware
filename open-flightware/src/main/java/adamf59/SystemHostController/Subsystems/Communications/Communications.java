@@ -63,8 +63,9 @@ public class Communications extends Subsystem {
     
                     // print out the data received to the console
                     try {
-                        Console.printInfo("Communications Recieved (RX)");
+                        Console.printOk("Communications Recieved (RX)");
                             last_response = event.getAsciiString();
+                            Console.printInfo("Data: " + last_response);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -78,9 +79,9 @@ public class Communications extends Subsystem {
 
 
 
-            config.device(SerialPort.getDefaultPort()).baud(Baud._19200).dataBits(DataBits._8).parity(Parity.NONE)
-                    .stopBits(StopBits._1).flowControl(FlowControl.NONE);
-                    serial.open(config);
+            config.device("/dev/ttyUSB0").baud(Baud._115200).dataBits(DataBits._8).parity(Parity.NONE)
+            .stopBits(StopBits._1).flowControl(FlowControl.NONE);
+            serial.open(config);
 
 
 
@@ -88,7 +89,7 @@ public class Communications extends Subsystem {
 
 
 
-        } catch (UnsupportedBoardType | IOException | InterruptedException e) {
+        } catch (UnsupportedBoardType | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -118,7 +119,7 @@ public class Communications extends Subsystem {
         /**
          * Transmits the data across the serial bus to the connected device.
          */
-    protected void transmit(String data) throws IllegalStateException, IOException {
+    public void transmit(String data) throws IllegalStateException, IOException {
         Console.printInfo("Transmitting (TX): " + data);
 
         try {

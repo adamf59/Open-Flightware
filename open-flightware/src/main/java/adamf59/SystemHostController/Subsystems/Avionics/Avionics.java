@@ -5,6 +5,7 @@
 */
 package adamf59.SystemHostController.Subsystems.Avionics;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.pi4j.io.gpio.GpioController;
@@ -25,51 +26,32 @@ import adamf59.SystemHostController.IO.*;
 import adamf59.SystemHostController.System.Console;
 
 public class Avionics extends Subsystem {
-    Pin pin;
-    ESCControl esc;
-    GpioPinPwmOutput pwm;
-    SerialArduino arduino;
+
     public Avionics(int id) {
         super("JAGSAT_AVIONICS_SUBSYSTEM", id);
-        arduino = new SerialArduino();
     }
 
     @Override
     public void init() {
         Console.printInfo("Initializing Avionics Subsystem");
-        arduino.init();
-/*         pin = CommandArgumentParser.getPin(RaspiPin.class, RaspiPin.GPIO_01);
-        pwm = GPIO.getGPIOController().provisionPwmOutputPin(pin);
-        
-        Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
-        Gpio.pwmSetRange(2000);
-        Gpio.pwmSetClock(500);
-       setPwm(1024);
-       Console.printInfo("Set to 1024");
-       Scanner scan = new Scanner(System.in);
-       String in = scan.next();
-       Console.printInfo("Set to 0");
-       setPwm(0);
-       Scanner scan1 = new Scanner(System.in);
-       String in1 = scan.next(); */
-       
-    }
 
+    }
 
     @Override
     public void execute() {
         Scanner scan = new Scanner(System.in);
         String in = scan.next();
-        arduino.sendSerial(in);
+        try {
+            SystemHost.s_communications.transmit(in);
+        } catch (IllegalStateException | IOException e) {
+            e.printStackTrace();
+        }
             
             
     }
-
     @Override
     public void executeAlways() {
         
     }
-    public void setPwm(int rate){
-        pwm.setPwm(rate);
-    }
+
 }
